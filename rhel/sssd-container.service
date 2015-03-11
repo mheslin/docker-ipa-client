@@ -1,0 +1,17 @@
+[Unit]
+Description=System Security Services Container
+# SSSD will not start until after docker is running
+After=docker.target
+Conflicts=sssd.target
+
+[Service]
+EnvironmentFile=-/etc/sysconfig/sssd
+ExecStart=/usr/bin/atomic run IMAGE
+ExecStop=/usr/bin/docker stop NAME
+Restart=always
+
+# Since /var is mapped into the container, the sssd can write the PID file
+PIDFile=/var/run/sssd.pid
+
+[Install]
+WantedBy=multi-user.target
