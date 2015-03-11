@@ -1,0 +1,25 @@
+= docker_ident
+
+A Docker image that can provide identity management services.
+
+The purpose of this image is to provide encapsulated identity and
+authentication services.  The consumer may be the host on which the
+container runs (a _super privileged container_) or it may be other
+containers running on the host.
+
+The host will manage the identity services using +sssd+.  The host will
+also be registered to an identity service such as IPA or Active
+Directory.
+
+User logins and sudo on the host will use the identity services to
+identify users making requests and to control access using standard
+policy tools.
+
+Host registration requires these arguments: (from http://linux.die.net/man/1/ipa-client-install[ipa-client-install])
+
+domain:: The DNS domain to use
+server:: The Identity server to register on
+realm:: The Kerberos realm to join
+hostname:: The hostname of the client to be registered
+principal:: The Kerberos principal (username) to use to register
+password:: The password for the Kerberos principal
