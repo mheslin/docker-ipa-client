@@ -1,7 +1,7 @@
 #!/bin/bash
 # uninstall script for IPA client image
 #
-rm /etc/system.d/system/sssd-container.service
+rm /etc/systemd/system/sssd-container.service
 
 ipa-client-install --uninstall
 
